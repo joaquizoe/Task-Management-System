@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 public class Database {
     private Connection connection;
-    private Statement statement;
 
     public Database() {
         createConnection();
@@ -24,5 +23,13 @@ public class Database {
 
     public Connection getConnection() {
         return connection;
+    }
+
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, "Database closing failed", ex);
+        }
     }
 }
